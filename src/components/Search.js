@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Spotify from './Spotify';
 import axios from 'axios';
 
-const token = 'AQBmVB-Wgabj2vD-88KRtArQmqjx76UawKJfbIMDEjPMbf5w4lfnXdWqBCsmjbY07CZAmgIlMXIKvBR2YAmSBeC9kXgcyCjL2l-F2BeNJnTb32E3MAmZVpiIGLyoBXm6ggq6tda0VWFFJFFmAaY-1S1oMo3ttJ4JDA'
+const {REACT_APP_CLIENT_ID, REACT_APP_CLIENT_SECRET} = process.env
 
 const Search = () => {
 
@@ -10,11 +10,10 @@ const Search = () => {
 
     const[songs, setSongs] = useState([])
 
-
     const fetchData = async () => {
         const res = await axios.get("https://api.spotify.com/v1/search", {
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer `,
             },
             params: {
                 q: term,

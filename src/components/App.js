@@ -1,6 +1,6 @@
 import React from 'react';
 import Search from './Search';
-import Token from '../Token';
+import Token from './Token';
 
 const App = () => {
   return (
