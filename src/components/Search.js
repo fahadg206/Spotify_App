@@ -26,7 +26,7 @@ const Search = () => {
     }
 
     useEffect(() => {
-        fetchData()
+        //fetchData()
     }
     , [])
 
@@ -38,7 +38,7 @@ const Search = () => {
             <form className='search'
                 onSubmit={(e) => {
                     e.preventDefault()
-                    fetchData()
+                    //fetchData()
                 }}
             >
                 <label>Search Song: </label>
