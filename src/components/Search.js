@@ -6,7 +6,7 @@ const {REACT_APP_CLIENT_ID, REACT_APP_CLIENT_SECRET} = process.env
 
 const Search = ({ token }) => {
 
-    const [term, setTerm] = useState("nba")
+    const [term, setTerm] = useState("drake")
 
     const[songs, setSongs] = useState([])
 
