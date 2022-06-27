@@ -11,7 +11,7 @@
 - There is a search bar for the user to search any track they would like. Each track has the track name, the album that track was apart of, and the duration of the song. When the track is clicked on, the app will redirect the user to the actual spotify website to listen to the song in a new tab. 
 
 
-##Technologies Used 
+## Technologies Used 
 
 - React, Spotify API, JavaScript, HTML, CSS, Axios
 
