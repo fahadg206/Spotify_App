@@ -1,63 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import Spotify from './Spotify';
-import axios from 'axios';
-
+import React, { useState, useEffect } from "react";
+import Spotify from "./Spotify";
+import axios from "axios";
 
 const Search = ({ token }) => {
+  const [term, setTerm] = useState("drake");
 
-  const [term, setTerm] = useState("drake")
+  const [songs, setSongs] = useState([]);
 
-  const[songs, setSongs] = useState([])
+  const fetchData = async () => {
+    const res = await axios.get("https://api.spotify.com/v1/search", {
+      headers: {
+        Authorization: `Bearer ${token} `,
+        "Content-Type": "application/json",
+      },
+      params: {
+        q: term,
+        type: "track,artist",
+        limit: 15,
+      },
+    });
+    setSongs(res.data.tracks.items);
+  };
 
-    const fetchData = async () => {
-      const res = await axios.get("https://api.spotify.com/v1/search", {
-        headers: {
-          "Authorization": `Bearer ${token} `,
-          "Content-Type": 'application/json'
-        },
-        params: {
-          q: term,
-          type: "track,artist",
-          limit: 15
-        }
-      })
-      setSongs(res.data.tracks.items)
-    }
+  useEffect(() => {
+    fetchData();
+  }, [token]);
 
-    useEffect(() => {
-        fetchData()
-    }
-    , [token])
-
-    
-    return (
-      <div>
-        <form 
-          onSubmit={(e) => {
-            e.preventDefault()
-            fetchData()
-          }}
-        >
-          <div className="ui search">
-            <div className="ui icon input">
-              <input 
-                className="prompt" 
-                type="text" 
-                onChange={(e) => setTerm(e.target.value)} 
-                placeholder="Artists, songs, or podcasts..." 
-              />
-              <i className="search icon" />
-            </div>
-            <div className="results"></div>
+  return (
+    <div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          fetchData();
+        }}
+      >
+        <div className="ui search">
+          <div className="ui icon input">
+            <input
+              className="prompt"
+              type="text"
+              onChange={(e) => setTerm(e.target.value)}
+              placeholder="Artists, songs, or podcasts..."
+            />
+            <i className="search icon" />
           </div>
-        </form>
-        <div className='spotify'>
-          <Spotify songs={songs} />
+          <div className="results"></div>
         </div>
+      </form>
+      <div className="spotify">
+        <Spotify songs={songs} />
       </div>
-    )
+    </div>
+  );
+};
 
-    
-}
-
-export default Search
+export default Search;
